@@ -3,7 +3,7 @@ name: Build and Run Docker on Self-Hosted Agent
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
