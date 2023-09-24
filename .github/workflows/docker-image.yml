@@ -25,5 +25,5 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DATA_BASE_URL }}
         run: |
-          docker run -d --net static_ip --ip 172.100.0.101 -e DATA_BASE_URL=${{ secrets.DATA_BASE_URL }} -e DISCORD_BOT_TOKEN=${{ secrets.DATA_BASE_URL }} -p 8501:8501 --restart=unless-stopped --name web_evekillboard_discordboad web_evekillboard_discordboad:latest
+          docker run -d --net static_ip --ip 172.100.0.101 -e DATA_BASE_URL=${{ secrets.DATA_BASE_URL }} -e DISCORD_BOT_TOKEN=${{ secrets.DATA_BASE_URL }} -p 80:80 --restart=unless-stopped --name web_evekillboard_discordboad web_evekillboard_discordboad:latest
           docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
