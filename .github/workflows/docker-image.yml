@@ -17,8 +17,8 @@ jobs:
 
       - name: Docker RM
         run: |
-          docker stop WebEveKillBoardDiscordBoad
-          docker rm WebEveKillBoardDiscordBoad
+          docker stop web_evekillboard_discordboad
+          docker rm web_evekillboard_discordboad
         continue-on-error: true
 
       - name: Run Docker container
