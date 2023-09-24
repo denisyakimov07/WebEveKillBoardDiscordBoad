@@ -3,6 +3,7 @@ import streamlit as st
 
 from bd import authentication
 
+
 if st.experimental_get_query_params() and authentication(st.experimental_get_query_params()):
     server_id = st.experimental_get_query_params()['s']
     print(st.experimental_get_query_params())
