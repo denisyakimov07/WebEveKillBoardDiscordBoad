@@ -1,0 +1,29 @@
+name: Build and Run Docker on Self-Hosted Agent
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t WebEveKillBoardDiscordBoad:latest --build-arg DISCORD_BOT_TOKEN=${{ secrets.DATA_BASE_URL }} .
+
+      - name: Docker RM
+        run: |
+          docker stop WebEveKillBoardDiscordBoad
+          docker rm WebEveKillBoardDiscordBoad
+        continue-on-error: true
+
+      - name: Run Docker container
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DATA_BASE_URL }}
+        run: |
+          docker run -d --net static_ip --ip 172.100.0.101 -e DATA_BASE_URL=${{ secrets.DATA_BASE_URL }} -e DISCORD_BOT_TOKEN=${{ secrets.DATA_BASE_URL }} -p 8501:8501 --restart=unless-stopped --name WebEveKillBoardDiscordBoad eve_board_bot:latest
+          docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
