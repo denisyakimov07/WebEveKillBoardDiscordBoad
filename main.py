@@ -7,5 +7,4 @@ if st.experimental_get_query_params() and authentication(st.experimental_get_que
     server_id = st.experimental_get_query_params()['s']
     print(st.experimental_get_query_params())
     r = requests.get(f"http://172.100.0.100:5000/server_text_channels/{server_id}").text
-
     st.text(r)
