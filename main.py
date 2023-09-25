@@ -6,8 +6,9 @@ from environment import get_env
 
 if st.experimental_get_query_params() and authentication(st.experimental_get_query_params()):
     server_id = st.experimental_get_query_params()['s'][0]
-    headers = {'Authorization': f'Bearer {get_env().DISCORD_BOT_TOKEN}'}
-    r = requests.get(f"http://0.0.0.0:5000/server_text_channels/{server_id}").text
+    # headers = {'Authorization': f'Bearer {get_env().DISCORD_BOT_TOKEN}'}
+    _json = {"username_key": get_env().HTTP_USERNAME, 'password_key': get_env().HTTP_PASSWORD}
+    r = requests.get(f"http://0.0.0.0:5000/server_text_channels/{server_id}", json=_json).text
     st.text(r)
 
 

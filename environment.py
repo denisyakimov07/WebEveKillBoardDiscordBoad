@@ -9,12 +9,14 @@ load_dotenv(verbose=True)
 class _Environment:
     DISCORD_BOT_TOKEN: str
     BASE_URL: str
-
+    HTTP_USERNAME: str
+    HTTP_PASSWORD: str
 
     def __init__(self):
         self.DISCORD_BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
         self.DATA_BASE_URL = os.getenv('DATA_BASE_URL')
-
+        self.HTTP_USERNAME = os.getenv('HTTP_USERNAME')
+        self.HTTP_PASSWORD = os.getenv('HTTP_PASSWORD')
 
     @staticmethod
     def __parse_log_level(log_level_str: str) -> int:
